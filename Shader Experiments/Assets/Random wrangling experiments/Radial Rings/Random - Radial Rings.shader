@@ -1,4 +1,4 @@
-﻿Shader "Unlit/GlitchShaderv2"
+﻿Shader "Random/RadialRings"
 {
 	Properties
 	{
@@ -155,8 +155,7 @@
 
 
 
-				/// Radial random rings		
-				/*
+				/// Radial random rings						
 				{
 					float numRings = 6;
 					float numRings2 = 8 + (((_SinTime.x +1)*.5) * 19);
@@ -190,55 +189,7 @@
 					radRandOffset = pow(radRandOffset, 15);
 
 					col = radRandOffset;
-				}
-				*/
-			
-
-
-
-				// Sin Cos rounded diamonds				
-				float sinU = tan(sin(centeredUV.x * UNITY_PI * 20));
-				float cosV = cos(centeredUV.y * UNITY_PI * 20);
-
-				float randU = Rand1D(floor(sinU));
-				float randV = Rand1D(floor(cosV));
-
-				//col = sinU  + cosV;
-				col = sinU + cosV;
-				
-				{ // Experiment area
-					
-				}
-
-				/*
-				// Sin Cos circle
-				float sinU = sin(i.uv.x * UNITY_PI);
-				float cosV = cos((i.uv.y - .5) * UNITY_PI);
-				col = sinU * cosV;
-				*/
-
-				// Nice noise circle
-				//col = SDFCircleSmooth(i.uv, float2(.5, .5), .3, Rand1D(scaledUV.y + (_Time.x%12.31 )- timeStepped * 16.341) * .45);
-
-				// 1D noise on x
-				//col = float4(Rand1D(scaledUV.x),1);
-
-				// 2D Noise
-				//col = Rand2D(integerAtUV);
-				
-				// fractional scaled UVs
-				//col = float4(fracAtUV, 0, 1);
-
-				// fractional scaled UVs - Rimmed
-				//col += float4(abs(fracAtUV - .5), 0, 1);
-
-				// sample the texture
-				//fixed4 col = tex2D(_MainTex, i.uv);
-				
-				// Adjust alpha randomly over time
-				//col.a *= (pow(Rand1D(_Time.z * 3.94), 5));
-
-				
+				}			
 
 				return col;
 			}
