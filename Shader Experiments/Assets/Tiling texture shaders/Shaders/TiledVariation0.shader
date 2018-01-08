@@ -61,14 +61,6 @@ Shader "Unlit/Tiled/Variation0"
 				float2 iuv = floor(uv);
 				float2 fuv = frac(uv);
 
-				/*
-				// generate per-tile transform (needs GL_NEAREST_MIPMAP_LINEARto work right)
-				float4 ofa = tex2D(samp, (iuv + float2(0.5, 0.5)) / 256.0);
-				float4 ofb = tex2D(samp, (iuv + float2(1.5, 0.5)) / 256.0);
-				float4 ofc = tex2D(samp, (iuv + float2(0.5, 1.5)) / 256.0);
-				float4 ofd = tex2D(samp, (iuv + float2(1.5, 1.5)) / 256.0);
-				*/
-
 				float4 ofa = hash4(iuv + float2(0.0, 0.0));
 				float4 ofb = hash4(iuv + float2(1.0, 0.0));
 				float4 ofc = hash4(iuv + float2(0.0, 1.0));

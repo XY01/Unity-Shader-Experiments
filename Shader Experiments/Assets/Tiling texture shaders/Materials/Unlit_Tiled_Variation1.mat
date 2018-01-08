@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Unlit_Tiled_Variation2
-  m_Shader: {fileID: 4800000, guid: fbf222264f66efa439068e6235a09f93, type: 3}
+  m_Name: Unlit_Tiled_Variation1
+  m_Shader: {fileID: 4800000, guid: 59e2a9b1f34aa0c4d85f596f0e9430b5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: cd877316ff713bf498597fc66c7f4f09, type: 3}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors: []
