@@ -108,6 +108,11 @@
 				return float3 (dx, lat, dy);
 			}
 
+			float map(float s, float a1, float a2, float b1, float b2)
+			{
+				return b1 + (s-a1)*(b2-b1)/(a2-a1);
+			}
+
 			struct appdata
 			{
 				float4 vertex : POSITION;
@@ -147,19 +152,37 @@
 				float2 integerAtUV = floor(scaledUV);
 				float2 fracAtUV = frac(scaledUV);
 
-				float timeStepped = floor(_Time.z);
+				float timeStepped = floor(_Time.y);
 
 				float sdfRadial = SDFRadial(i.uv, float2(.5, .5));
 
 				fixed4 col;
 
+				float normalizedSin = (_SinTime.z + 1) * .5;
+
 
 			
 
-				
-				{ // Experiment area
+			
+
+			
+				{ // zipper noise
+					float rowVal = Rand1D(floor(i.uv.y * 63));
+					rowVal = map(rowVal,0,1,-1,1);
 					
+					float rowOffset = i.uv.x + (rowVal * .001);
+					float noiseScaler = .001;
+					float rowNoise = Rand1D( ( rowOffset + (sin(_Time.y*rowVal) * .004) )  );
+					rowNoise = pow(rowNoise, 5);
+					
+					//rowNoise = pow(rowNoise, 1 + (abs(rowVal) * 10));
+					//rowNoise = smoothstep(.7,.8,rowNoise);
+
+					col =  rowNoise * rowVal;
 				}
+		
+
+
 
 				/*
 				// Sin Cos circle
@@ -169,10 +192,10 @@
 				*/
 
 				// Nice noise circle
-				//col = SDFCircleSmooth(i.uv, float2(.5, .5), .3, Rand1D(scaledUV.y + (_Time.x%12.31 )- timeStepped * 16.341) * .45);
+				//col = SDFCircleSmooth(i.uv, float2(.5, .5), .2 + (normalizedSin * .3), Rand1D(scaledUV.y + (_Time.x%12.31 ) - timeStepped * 16.341) * .45);
 
 				// 1D noise on x
-				col = float4(Rand1D(scaledUV.x + _Time.x * .23),1);
+				//col = float4(Rand1D(scaledUV.x + _Time.x * .23),1);
 
 				// 2D Noise
 				//col = Rand2D(integerAtUV);
